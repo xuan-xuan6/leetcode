@@ -1,0 +1,63 @@
+给定两个大小分别为 m 和 n 的正序（从小到大）数组 nums1 和 nums2。请你找出并返回这两个正序数组的 中位数 。
+
+
+class Solution {
+    public double findMedianSortedArrays(int[] a, int[] b) {
+        if (a.length==0&&b.length!=0){
+            if(b.length%2==0){
+                return((double) (b[b.length/2]+b[b.length/2-1])/2);
+            }
+            else{
+                return((double)b[b.length/2]);
+            }
+        }
+        else if (b.length==0&&a.length!=0){
+            if(a.length%2==0){
+                return((double) (a[a.length/2]+a[a.length/2-1])/2);
+            }
+            else{
+                return((double)a[a.length/2]);
+            }
+        }
+        else if (a.length!=0&&b.length!=0){
+            int num = a.length+b.length;
+            int [] c=new int[num];
+            int z=0;
+            int i=0;
+            int j=0;
+            for (;i<b.length;){
+                if(j!=a.length){
+                    for(;j<a.length;) {
+                        if (b[i] <= a[j]) {
+                            c[z++] = b[i++];
+                            break;
+                        } else {
+                            c[z++] = a[j++];
+                            break;
+                        }
+                    }
+                }
+                else
+                    break;
+            }
+            if(i<b.length){
+                for (;i<b.length;){
+                    c[z++]=b[i++];
+                }
+            }
+            if(j<a.length){
+                for (;j<a.length;){
+                    c[z++]=a[j++];
+                }
+            }
+            if(c.length%2==0){
+                return((double) (c[c.length/2]+c[c.length/2-1])/2);
+            }
+            else{
+                return((double)c[c.length/2]);
+            }
+        }
+        else
+            return(0);
+    }
+}
