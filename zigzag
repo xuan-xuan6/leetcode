@@ -1,0 +1,38 @@
+
+
+z字形
+class Solution {
+    public String convert(String s, int numRows) {
+        StringBuilder[] res = new StringBuilder[numRows];
+        if(numRows==1){
+            return s;
+        }
+        for (int i=0;i<numRows;i++){
+            res[i]=new StringBuilder();
+        }
+        int index=0;
+        int row = 0;
+        while (index<s.length()){
+            while (index<s.length()&&row<numRows){
+                char ch = s.charAt(index);
+                res[row].append(ch);
+                row++;
+                index++;
+            }
+            row-=2;
+            while (index<s.length()&&row>=0){
+                char ch = s.charAt(index);
+                res[row].append(ch);
+                row--;
+                index++;
+            }
+            row+=2;
+        }
+        StringBuilder ans = new StringBuilder();
+        for (int i=0;i<numRows;i++){
+            ans.append(res[i]);
+        }
+        return ans.toString();
+
+    }
+}
