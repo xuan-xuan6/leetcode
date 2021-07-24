@@ -1,0 +1,29 @@
+判断回文与否
+
+
+class Solution {
+    public boolean isPalindrome(int x) {
+        String str = String.valueOf(x);
+        int mid = str.length()/2;
+        if(str.length()%2==0){
+            int j=mid;
+            for(int i = 1;i<=mid;i++){
+                
+                if(str.charAt(mid-i)==str.charAt(j++))
+                    continue;
+                else
+                    return false;
+            }
+        }
+        else{
+            for(int i=1;i<=mid;i++){
+                if(str.charAt(mid-i)==str.charAt(mid+i))
+                    continue;
+                else
+                    return false;
+            }
+        }
+        return true;
+
+    }
+}
