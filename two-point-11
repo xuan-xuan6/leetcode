@@ -1,0 +1,24 @@
+双指针可以由内向外，从外向里
+
+
+class Solution {
+    public int maxArea(int[] height) {
+        int l=0;
+        int r=height.length-1;
+        int area=0;
+        int h=0;
+        int weight=0;
+        for(;l<r;){
+            weight=r-l;
+            h=height[r]<height[l]?height[r]:height[l];
+            area=area<(weight*h)?(weight*h):area;
+            if (height[r]<height[l]){
+                r--;
+            }
+            else
+                l++;
+        }
+        return area;
+
+    }
+}
