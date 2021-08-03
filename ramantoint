@@ -1,0 +1,39 @@
+class Solution {
+    int[] values={1000,500,100,50,10,5,1};
+    String[] symbols={"M","D","C","L", "X", "V", "I"};
+    public int romanToInt(String s) {
+        int num=0;
+        for(int i=0;i<s.length();i++){
+            char c = s.charAt(i);
+            int j=0;
+            while (j<symbols.length){
+                String str = String.valueOf(c);
+                if(symbols[j].equals(str))
+                    break;
+                j++;
+            }
+            int num1=0;
+            if(i!=s.length()-1){
+                char c1=s.charAt(i+1);
+                int k = 0;
+                while (k<symbols.length){
+                    String str1 = String.valueOf(c1);
+                    if(symbols[k].equals(str1))
+                        break;
+                    k++;
+                }
+                if (values[j]<values[k]){
+                    num1=-values[j];
+                }
+                else
+                    num1=values[j];
+            }
+            else{
+                num1=values[j];
+            }
+            num+=num1;
+        }
+        return num;
+
+    }
+}
