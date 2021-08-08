@@ -1,0 +1,46 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class threesum {
+    public List<List<Integer>> threeSum(int[] nums) {
+        Arrays.sort(nums);
+        List<List<Integer>> ans = new ArrayList<List<Integer>>();
+        for (int i = 0; i < nums.length; i++) {//第一层数字
+            if (i > 0 ) {//重复数字跳过
+                if (nums[i] == nums[i - 1]) {
+                    continue;
+                }
+            }
+            int third = nums.length - 1;//使用双指针，第三个数从数组最后面开始
+            int t = -nums[i];
+            for (int j = i + 1; j < nums.length;j++ ) {//第二个数紧跟第一个数
+                if (j > i+1 ) {
+                    if (nums[j] == nums[j - 1]) {
+                        continue;
+                    }
+                }
+                while (j<third&&nums[j]+nums[third]>t) {
+                    third--;
+                }
+                if(third==j)
+                    break;
+                if (nums[third] + nums[j] == t) {
+                    List<Integer> list = new ArrayList<Integer>();
+                    list.add(nums[i]);
+                    list.add(nums[j]);
+                    list.add(nums[third]);
+                    ans.add(list);
+                }
+            }
+        }
+        return ans;//只要找到third就不往左移动了因为左边都是小于等于third的数
+    }
+
+    public static void main(String[] args) {
+        threesum t = new threesum();
+        int[] i = new int[]{-1,0,1,2,-1,-4};
+        System.out.println(t.threeSum(i));
+    }
+
+}
